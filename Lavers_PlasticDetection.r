@@ -197,7 +197,6 @@ head(detout)
 
 ############# FIGURE ######################
 
-output<-read.table("predicted_abundances_QUAD_experience_final.csv", header=T, sep=",")
 output$ucl[is.infinite(output$ucl)] <- 0 
 pd<-aggregate(Predicted~Type+Colour,output, FUN=sum)
 pd$lcl<-aggregate(lcl~Type+Colour,output, FUN=sum)[,3]
@@ -207,7 +206,7 @@ pd$REAL<-aggregate(REAL~Type+Colour,output, FUN=sum)[,3]
 par(mar=c(6,6,0,0))
 errbar(c(1:4), pd$Predicted[c(3,4,5,2)], pd$lcl[c(3,4,5,2)], pd$ucl[c(3,4,5,2)],xlim=c(0,5), ylim=c(0,800), axes=F,ylab="Total number of plastic particles", xlab="",cex.lab=1.7,
 pch=16, cex=2, mgp=c(4,1,0))
-axis(1, at=c(0:5), labels=c("","Blue \n Fragments","White \n Fragments","White \n Nurdles","Black \n Nurdles",""), cex.axis=1.5, lwd=1, lwd.ticks=0, pos=0, padj=1)
+axis(1, at=c(0:5), labels=c("","Blue \n Fragments","White \n Fragments","White \n Pellets","Black \n Pellets",""), cex.axis=1.5, lwd=1, lwd.ticks=0, pos=0, padj=1)
 axis(2, at=seq(0,800,200), labels=T, cex.axis=1.5, las=1)
 points(pd$REAL[c(3,4,5,2)], pch=4, col='red', cex=2.5)
 
